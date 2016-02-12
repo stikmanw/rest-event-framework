@@ -638,6 +638,11 @@ class Common extends AbstractAdapter implements AdapterInterface
      */
     protected function tablizeCriteria($criteria)
     {
+
+        return $criteria;
+
+        // deprecating this to see what breaks
+
         // remap the criteria to the correct DB format
         $mappedCriteria = array();
 

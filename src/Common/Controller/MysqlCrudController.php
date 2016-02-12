@@ -114,7 +114,7 @@ class MysqlCrudController extends AbstractController
 
         $factory = null;
         // use a default based on application settings
-        if($this->app['namespace.mysql.adapter']) {
+        if(isset($this->app['namespace.mysql.adapter'])) {
             $factory = new MultiInstanceFactory($this->app['namespace.mysql.adapter']);
             $factory->pushNamespace("Common\\Storage\\Adapter\\Mysql");
             return $factory;

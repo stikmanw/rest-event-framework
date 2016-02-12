@@ -591,6 +591,7 @@ class Mysql extends AbstractConnection implements ConnectionInterface
         if(isset($params['configPath'])) {
             $group = isset($params['group']) ? $params['group'] : null;
             $this->setHostByConfig($params['configPath'], $group);
+            $valid = true;
         }
 
         if(!$valid) {
@@ -616,10 +617,14 @@ class Mysql extends AbstractConnection implements ConnectionInterface
             return true;
     }
 
-    protected function setHostByConfig($configPath, $group = "default")
+    protected function setHostByConfig($configPath, $group)
     {
+        if(!$group) {
+            $group = 'default';
+        }
+
         if(!is_file($configPath)) {
-            throw new \RuntimeException("configuration path for hosts is not a valid file");
+            throw new \RuntimeException("configuration path for hosts is not a valid file: {$configPath}");
         }
 
         $configData = file_get_contents($configPath);
@@ -630,6 +635,8 @@ class Mysql extends AbstractConnection implements ConnectionInterface
         if($result instanceof ParsingException) {
             throw $result;
         }
+
+        $configData = json_decode($configData);
 
         if(!$configData->{$group}) {
             throw new \RuntimeException("group {$group} not found");

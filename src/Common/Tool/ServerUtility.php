@@ -13,10 +13,10 @@ class ServerUtility
     {
         if (defined('APPLICATION_ENV') ) {
             return APPLICATION_ENV;
-        } elseif($GLOBALS['APPLICATION_ENV']) {
+        } elseif(isset($GLOBALS['APPLICATION_ENV'])) {
             return $GLOBALS['APPLICATION_ENV'];
         } else {
-            trigger_error("APPLICATION_ENV should be set as system constant by webserver or by \$GLOBALS", E_WARNING);
+            trigger_error("APPLICATION_ENV should be set as system constant by webserver or by \$GLOBALS", E_USER_WARNING);
         }
     }
 
@@ -26,11 +26,11 @@ class ServerUtility
             $env = static::determineEnvironment();
         }
 
-        if(LOCALHOST) {
+        if(defined('LOCALHOST')) {
             return true;
         }
 
-        if($GLOBALS['LOCALHOST']) {
+        if(isset($GLOBALS['LOCALHOST'])) {
             return true;
         }
 
