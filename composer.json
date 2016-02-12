@@ -1,0 +1,33 @@
+{
+	"name": "stikmanw/rest-event-framework", 
+	"description": "Small REST framework with eventful lifecycle around common CRUD events for LAMP stack",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Ben Carter",
+			"email": "ben.carter.dev@gmail.com"
+		}
+	],
+    "keywords": ["rest", "api"],
+    "minimum-stability": "dev",
+    "require": {
+        "silex/silex": "^1",
+        "doctrine/dbal": "2.3.*",
+        "seld/jsonlint": "1.*@stable",
+        "icanboogie/inflector": "v1.2",
+        "monolog/monolog": "1.*@stable",
+        "nategood/commando": "0.2.3",
+        "stikmanw/silex-newrelic": "^1.0",
+        "shrikeh/teapot": "^1.0",
+		"phpFastCache/phpFastCache": "^4.2"
+
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^4"
+    },
+	"autoload": {
+		"psr-0": {
+			"Common": "src/"
+		}
+	} 
+}
